@@ -16,9 +16,11 @@
 	    <li><a ng-click="products.next()">Next</a></li>
 	  </ul>
 	</div>
+
+	<!-- <div q-paginator="products"></div> -->
 	
+	<button class="btn btn-info pull-right" ng-click="newProduct()">New Product</button>
 	<h4>Showing page {{products.page}} of {{products.count}} products</h4>
-	<button class="btn btn-info" ng-click="newProduct()">New Product</button>
 	<table class="table">
 		<thead>
 			<tr>
@@ -30,16 +32,16 @@
 		<tbody>
 			<tr ng-repeat="product in products.data">
 				<td ng-switch on="product._edit">
-					<input ng-switch-when="true" type="text" class="input-mini" ng-model="product.name">
+					<input ng-switch-when="true" type="text" class="input-medium" ng-model="product.name">
 					<span ng-switch-default>{{product.name}}</span>
 				</td>
 				<td ng-switch on="product._edit">
-					<input ng-switch-when="true" type="text" class="input-mini" ng-model="product.category">
+					<input ng-switch-when="true" type="text" class="input-small" ng-model="product.category">
 					<span ng-switch-default>{{product.category}}</span>
 				</td>
 				<td ng-switch on="product._edit">
 					<input ng-switch-when="true" type="text" class="input-mini" ng-model="product.price">
-					<span ng-switch-default>{{product.price}}</span>
+					<span ng-switch-default>{{product.price | currency}}</span>
 				</td>
 				<td ng-show="products.config.useModel">
 					<!-- Edit/Delete -->

@@ -87,8 +87,7 @@ exports.all = function(req, res) {
     .limit(lim)
     .skip(req.query.page > 1
         ? (req.query.page-1)*lim
-        : 0
-    )
+        : 0)
     .sort((req.query.sortAsc||'') + req.query.sort||'name')
 
     .populate('user').exec(function(err, products) {
