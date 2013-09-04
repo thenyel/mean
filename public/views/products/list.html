@@ -1,5 +1,23 @@
 <section class="offset1 span10" data-ng-controller="ProductsController" data-ng-init="find()">
 	<h1>Products</h1>
+
+	<br>
+	<div class="form-inline">
+		<input type="text" ng-model='products.filters.name' placeholder='Search by Name'>
+		<input type="text" ng-model='products.filters.category' placeholder='Search by Category'>
+		<button class="btn btn-primary" ng-click="products.find()">Find</button>
+	</div>
+	<br>
+
+	<div class="pagination">
+	  <ul>
+	    <li><a ng-click="products.prev()">Prev</a></li>
+	    <li ng-repeat="page in products.getPages()"><a ng-click="products.movePage(page)">{{page}}</a></li>
+	    <li><a ng-click="products.next()">Next</a></li>
+	  </ul>
+	</div>
+	
+	<h4>Showing page {{products.page}} of {{products.count}} products</h4>
 	<table class="table">
 		<thead>
 			<tr>
@@ -10,12 +28,34 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat="product in products.data">
-				<td>{{product.name}}</td>
-				<td>{{product.category}}</td>
-				<td>{{product.price}}</td>
-				<td><button class="btn"><i class="icon-remove"></i></button></td>
+				<td ng-switch on="product._edit">
+					<input ng-switch-when="true" type="text" class="input-mini" ng-model="product.name">
+					<span ng-switch-default>{{product.name}}</span>
+				</td>
+				<td ng-switch on="product._edit">
+					<input ng-switch-when="true" type="text" class="input-mini" ng-model="product.category">
+					<span ng-switch-default>{{product.category}}</span>
+				</td>
+				<td ng-switch on="product._edit">
+					<input ng-switch-when="true" type="text" class="input-mini" ng-model="product.price">
+					<span ng-switch-default>{{product.price}}</span>
+				</td>
+				<td>
+						<!-- Edit -->
+						<button class="btn btn-mini" ng-hide="product._edit" ng-click="product._edit = true"><i class="icon-edit"></i></button>
+						
+						<!-- Delete -->
+						<button class="btn btn-mini btn-danger" ng-hide="product._edit" ng-click="product.$remove()"><i class="icon-white icon-remove"></i></button>
+					
+					<!-- Save/Cancel -->
+					<div class="btn-group" ng-show="product._edit">
+						<button class="btn btn-mini btn-success" ng-click="product.$update(); product._edit = false;"><i class="icon-ok"></i></button>
+						<button class="btn btn-mini" ng-click="product._edit = false;">Cancel</button>
+					</div>
+					
+				</td>
 			</tr>
 		</tbody>
 	</table>
-	<h1 data-ng-hide="!products || products.length">No products yet. <br> Why don't you <a href="/#!/products/create">Create One</a>?</h1>
+	<h1 data-ng-hide="!products.data || products.data.length">No products yet. <br> Why don't you <a href="/#!/products/create">Create One</a>?</h1>
 </section>

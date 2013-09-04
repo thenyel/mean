@@ -48,7 +48,7 @@ angular.module('query', ['ng']).
          * Paging properties
          */
         this.page = 1;
-        this.pages = 5;
+        this.pages = 1;
         this.count = 0;
 
         /**
@@ -75,23 +75,35 @@ angular.module('query', ['ng']).
           });
         }
 
-
         // Sorting
         if (this.sortBy) {
           params.sort = this.sortBy;
           params.sortAsc = !!this.sortAsc ? '' : '-';
         }
 
+        // Build url query
         this.httpParams.data = {name: 'Ch'};
         this.httpParams.url = this.httpParams.url.split('?')[0] + '?' + $.param(params);
 
-        console.log(this.httpParams);
-
         $http(this.httpParams).then(function(response) {
+
               var data = response.data;
 
               if (data) {
-                self.data = data;
+
+                // Instantiate a model for every record returned
+                if (self.config.useModel) {
+                  self.data = [];
+                  $.each(data.data, function (i, dt) {
+                    self.data.push(new self.config.useModel(dt));
+                  });
+                  var t = self
+                } else {
+                  self.data = data.data;
+                }
+
+                self.count = data.count;
+                self.pages = Math.ceil(data.count / self.limit);
               }
 
               // do success callback
@@ -144,6 +156,36 @@ angular.module('query', ['ng']).
        */
       Query.prototype.prev = function () {
         this.movePage(this.page - 1);
+      }
+      
+      /**
+       * Returns a range of pages
+       */
+      Query.prototype.getPages = function () {
+
+        function range (a, b, step){
+            var A= [];
+            if(typeof a== 'number'){
+                A[0]= a;
+                step= step || 1;
+                while(a+step<= b){
+                    A[A.length]= a+= step;
+                }
+            }
+            else{
+                var s= 'abcdefghijklmnopqrstuvwxyz';
+                if(a=== a.toUpperCase()){
+                    b=b.toUpperCase();
+                    s= s.toUpperCase();
+                }
+                s= s.substring(s.indexOf(a), s.indexOf(b)+ 1);
+                A= s.split('');        
+            }
+            return A;
+        }
+
+        return range(1, this.pages);
+
       }
 
       return Query;

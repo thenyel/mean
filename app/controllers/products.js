@@ -82,7 +82,7 @@ exports.all = function(req, res) {
             conditions[key.replace('q_','')] = new RegExp(val, "ig");
         }
     })
-    
+
     Product.find(conditions)
     .limit(lim)
     .skip(req.query.page > 1
@@ -92,13 +92,25 @@ exports.all = function(req, res) {
     .sort((req.query.sortAsc||'') + req.query.sort||'name')
 
     .populate('user').exec(function(err, products) {
+
         if (err) {
             res.render('error', {
                 status: 500
             });
         } else {
-            res.jsonp(products);
+            var count = 0;
+
+            // Get count
+            Product.count(conditions,function (err, c) {
+                count = c;
+                res.jsonp({
+                    data: products,
+                    count: count
+                });
+            });
+
         }
+
     });
 
 };

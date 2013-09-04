@@ -32,4 +32,15 @@ var ProductSchema = new Schema({
     }
 });
 
+/**
+ * Statics
+ */
+ProductSchema.statics = {
+    load: function(id, cb) {
+        this.findOne({
+            _id: id
+        }).populate('user').exec(cb);
+    }
+};
+
 mongoose.model('Product', ProductSchema);

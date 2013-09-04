@@ -2,7 +2,7 @@ function ProductsController($scope, $routeParams, $location, Global, Product, Qu
 
     $scope.global = Global;
 
-    $scope.products = new Query('/products');
+    $scope.products = new Query('/products',false,{useModel: Product});
     $scope.products.find();
     t = $scope.products
 
