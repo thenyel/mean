@@ -1,8 +1,9 @@
-function ArticlesController($scope, $routeParams, $location, Global, Articles) {
+function ArticlesController($scope, $routeParams, $location, Global, Article) {
+    
     $scope.global = Global;
 
     $scope.create = function() {
-        var article = new Articles({
+        var article = new Article({
             title: this.title,
             content: this.content
         });
@@ -37,16 +38,17 @@ function ArticlesController($scope, $routeParams, $location, Global, Articles) {
     };
 
     $scope.find = function(query) {
-        Articles.query(query, function(articles) {
+        Article.query(query, function(articles) {
             $scope.articles = articles;
         });
     };
 
     $scope.findOne = function() {
-        Articles.get({
+        Article.get({
             articleId: $routeParams.articleId
         }, function(article) {
             $scope.article = article;
         });
     };
+
 }

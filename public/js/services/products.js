@@ -1,9 +1,9 @@
 //Articles service used for articles REST endpoint
 window.app
 
-.factory("Article", function($resource) {
-    return $resource('articles/:articleId', {
-        articleId: '@_id'
+.factory("Product", function($resource) {
+    return $resource('products/:productId', {
+        productId: '@_id'
     }, {
         update: {
             method: 'PUT'

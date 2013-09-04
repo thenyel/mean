@@ -2,6 +2,8 @@
 window.app.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
+
+        // Articles
         when('/articles', {
             templateUrl: 'views/articles/list.html'
         }).
@@ -14,6 +16,21 @@ window.app.config(['$routeProvider',
         when('/articles/:articleId', {
             templateUrl: 'views/articles/view.html'
         }).
+
+        // PRoducts
+        when('/products', {
+            templateUrl: 'views/products/list.html'
+        }).
+        when('/products/create', {
+            templateUrl: 'views/products/create.html'
+        }).
+        when('/products/:productId/edit', {
+            templateUrl: 'views/products/edit.html'
+        }).
+        when('/products/:productId', {
+            templateUrl: 'views/products/view.html'
+        }).
+
         when('/', {
             templateUrl: 'views/index.html'
         }).

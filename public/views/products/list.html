@@ -1,0 +1,21 @@
+<section class="offset1 span10" data-ng-controller="ProductsController" data-ng-init="find()">
+	<h1>Products</h1>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Product Name</th>
+				<th>Category</th>
+				<th>Price</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="product in products.data">
+				<td>{{product.name}}</td>
+				<td>{{product.category}}</td>
+				<td>{{product.price}}</td>
+				<td><button class="btn"><i class="icon-remove"></i></button></td>
+			</tr>
+		</tbody>
+	</table>
+	<h1 data-ng-hide="!products || products.length">No products yet. <br> Why don't you <a href="/#!/products/create">Create One</a>?</h1>
+</section>

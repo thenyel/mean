@@ -57,13 +57,24 @@ module.exports = function(app, passport, auth) {
     //Article Routes
     var articles = require('../app/controllers/articles');
     app.get('/articles', articles.all);
-    app.post('/articles', auth.requiresLogin, articles.create);
+    app.post('/articles', articles.create);
     app.get('/articles/:articleId', articles.show);
-    app.put('/articles/:articleId', auth.requiresLogin, auth.article.hasAuthorization, articles.update);
-    app.del('/articles/:articleId', auth.requiresLogin, auth.article.hasAuthorization, articles.destroy);
+    app.put('/articles/:articleId', articles.update);
+    app.del('/articles/:articleId', articles.destroy);
 
     //Finish with setting up the articleId param
     app.param('articleId', articles.article);
+
+    //Article Routes
+    var products = require('../app/controllers/products');
+    app.get('/products', products.all);
+    app.post('/products', products.create);
+    app.get('/products/:productId', products.show);
+    app.put('/products/:productId', products.update);
+    app.del('/products/:productId', products.destroy);
+
+    //Finish with setting up the productId param
+    app.param('productId', products.product);
 
     //Home route
     var index = require('../app/controllers/index');

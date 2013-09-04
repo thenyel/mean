@@ -1,0 +1,6 @@
+<section data-ng-controller="ProductsController" data-ng-init="findOne()">
+	<span>{{product.created | date:'medium'}}</span> /
+	<span>{{product.user.name}}</span>
+	<h2>{{product.title}} <a data-ng-show="global.user._id == product.user._id" href="/#!/products/{{product._id}}/edit">edit</a></h2>
+	<div>{{product.content}}</div>
+</section>
