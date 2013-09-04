@@ -54,7 +54,7 @@ angular.module('query', ['ng']).
         /**
          * Sorting properties
          */
-        this.sortProperty = '';
+        this.sortBy = '';
         this.sortAsc = true;
 
 
@@ -97,7 +97,6 @@ angular.module('query', ['ng']).
                   $.each(data.data, function (i, dt) {
                     self.data.push(new self.config.useModel(dt));
                   });
-                  var t = self
                 } else {
                   self.data = data.data;
                 }
@@ -121,7 +120,7 @@ angular.module('query', ['ng']).
        * @return {array}           result set
        */
       Query.prototype.sort = function (prop, direction) {
-        this.sortProperty = prop || this.sortProperty;
+        this.sortBy = prop || this.sortBy;
         this.sortAsc = typeof direction === 'undefined'
           ? !this.sortAsc
           : direction === true || direction === 'asc';
