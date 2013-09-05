@@ -43,6 +43,7 @@ angular.module('query', ['ng']).
          */
         this.limit = this.config.limit||15;
         this.filters = {};
+        this.lastSearch = false;
 
         /**
          * Paging properties
@@ -76,6 +77,9 @@ angular.module('query', ['ng']).
             params['q_'+prop] = val;
           });
         }
+        // If filter was changed, reset the page to 1, update the query
+        this.page = this.lastSearch !== this.filters ? 1 : this.page;
+
 
         /**
          * Query Sorting
@@ -88,7 +92,6 @@ angular.module('query', ['ng']).
         /**
          * Build query-string
          */
-        this.httpParams.data = {name: 'Ch'};
         this.httpParams.url = this.httpParams.url.split('?')[0] + '?' + $.param(params);
 
         /**

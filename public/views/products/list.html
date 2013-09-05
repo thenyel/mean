@@ -3,8 +3,8 @@
 
 	<br>
 	<div class="form-inline">
-		<input type="text" ng-model='products.filters.name' placeholder='Search by Name'>
-		<input type="text" ng-model='products.filters.category' placeholder='Search by Category'>
+		<input type="text" ng-model='products.filters.name' ng-change="products.find()" placeholder='Search by Name'>
+		<input type="text" ng-model='products.filters.category' ng-change="products.find()" placeholder='Search by Category'>
 		<button class="btn btn-primary" ng-click="products.find()">Find</button>
 	</div>
 	<br>

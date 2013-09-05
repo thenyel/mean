@@ -1,0 +1,25 @@
+
+<section class="well span12" ng-controller="ScopeDemoParentCtrl">
+
+	<h2>Parent Controller</h2>
+
+	<section class="row">
+		<section class="span12">
+			<input type="text" ng-model="name" placeholder="name">
+			<br>
+			Name: {{name}}
+		</section>
+	</section>
+	<br>
+
+
+	<section class="row">
+		<div scope-demo parent-data></div>
+		<div scope-demo parent-data></div>
+		<div scope-demo parent-data></div>
+	</section>
+
+	
+	<div calc="num"></div>
+
+</section>

@@ -16,4 +16,35 @@ window.app
 	  };
 	}])
 
+
+	.directive('scopeDemo', [function() {
+	  'use strict';
+	  return {
+	    restrict: 'A',
+	    replace: true,
+	    scope: {},
+	    template: '<div class="span3 well"> <input ng-model="name" class="input-small" /><br>Name:{{name}} </div>',
+	    link: function(scope, element, attrs) {
+	    }
+	  };
+	}])
+
+
+	.directive('calc', [function() {
+	  'use strict';
+	  return {
+	    restrict: 'A',
+	    replace: true,
+	    templateUrl: 'views/directives/calc.html',
+	    link: function(scope, element, attrs) {
+	    	scope.num = '';
+
+	    	scope.input = function (n) {
+	    		scope.num += n;
+	    	}
+	    }
+	  };
+	}])
+
+
 ;

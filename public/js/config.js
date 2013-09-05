@@ -17,7 +17,7 @@ window.app.config(['$routeProvider',
             templateUrl: 'views/articles/view.html'
         }).
 
-        // PRoducts
+        // Products
         when('/products', {
             templateUrl: 'views/products/list.html'
         }).
@@ -30,6 +30,14 @@ window.app.config(['$routeProvider',
         when('/products/:productId', {
             templateUrl: 'views/products/view.html'
         }).
+
+
+        // Mini Demos
+        when('/scopes', {
+            templateUrl: 'views/demos/scopes.html'
+        }).
+
+
 
         when('/', {
             templateUrl: 'views/index.html'

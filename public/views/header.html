@@ -2,6 +2,9 @@
 	<ul class="nav">
 		<li><a class="brand" href="/">MEAN - A Modern Stack</a></li>
 		<li data-ng-repeat="item in menu" data-ng-show="global.user" data-ng-class="isSelected(item)"><a href="#!/{{item.link}}">{{item.title}}</a></li>
+		<li><a href="#!/articles">Articles</a></li>
+		<li><a href="#!/products">Products</a></li>
+		<li><a href="#!/scratch">scratch</a></li>
 	</ul>
 	<ul class="nav pull-right" data-ng-hide="global.authenticated">
 		<li><a href="signup">Signup</a></li>
