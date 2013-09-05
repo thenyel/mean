@@ -1,16 +1,5 @@
-/**
- * @license AngularJS v1.0.7
- * (c) 2010-2012 Google, Inc. http://angularjs.org
- * License: MIT
- */
 (function(window, angular) {
 'use strict';
-
-/**
- * @ngdoc overview
- * @name ngResource
- * @description
- */
 
 angular.module('query', ['ng']).
 
