@@ -18,6 +18,11 @@ window.app.config(['$routeProvider',
         }).
 
         // Products
+        when('/products-demo', {
+            templateUrl: 'views/products/list-demo.html'
+        }).
+
+        // Products
         when('/products', {
             templateUrl: 'views/products/list.html'
         }).

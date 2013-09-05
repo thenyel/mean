@@ -1,0 +1,70 @@
+<section class="offset1 span10" data-ng-controller="ProductsController" data-ng-init="find()">
+	<h1>Products</h1>
+
+	<br>
+	<div class="form-inline">
+		<input type="text" ng-model='products.filters.name' ng-change="products.find()" placeholder='Search by Name'>
+		<input type="text" ng-model='products.filters.category' ng-change="products.find()" placeholder='Search by Category'>
+		<button class="btn btn-primary" ng-click="products.find()">Find</button>
+	</div>
+	<br>
+
+	<div class="pagination">
+	  <ul>
+	    <li><a ng-click="products.prev()">Prev</a></li>
+	    <li ng-repeat="page in products.getPages()"><a ng-click="products.movePage(page)">{{page}}</a></li>
+	    <li><a ng-click="products.next()">Next</a></li>
+	  </ul>
+	</div>
+
+	<!-- <div q-paginator="products"></div> -->
+	
+	<button class="btn btn-info pull-right" ng-click="newProduct()">New Product</button>
+	<h4>Showing page {{products.page}} of {{products.count}} products</h4>
+	<table class="table">
+		<thead>
+			<tr>
+				<th ng-click="products.sort('name')">Product Name</th>
+				<th ng-click="products.sort('category')">Category</th>
+				<th ng-click="products.sort('price')">Price</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="product in products.data">
+				<td ng-switch on="product._edit">
+					<input ng-switch-when="true" type="text" class="input-medium" ng-model="product.name">
+					<span ng-switch-default>{{product.name}}</span>
+				</td>
+				<td ng-switch on="product._edit">
+					<input ng-switch-when="true" type="text" class="input-small" ng-model="product.category">
+					<span ng-switch-default>{{product.category}}</span>
+				</td>
+				<td ng-switch on="product._edit">
+					<input ng-switch-when="true" type="text" class="input-mini" ng-model="product.price">
+					<span ng-switch-default>{{product.price | currency}}</span>
+				</td>
+				<td ng-show="products.config.useModel">
+					<!-- Edit/Delete -->
+					<div ng-hide="product._edit">
+						<button class="btn btn-mini" ng-click="product._edit = true"><i class="icon-edit"></i></button>
+						<button class="btn btn-mini btn-danger" ng-click="product.$remove(); products.find()"><i class="icon-white icon-remove"></i></button>
+					</div>
+					
+					<!-- Create/Update/Cancel -->
+					<div class="btn-group" ng-show="product._edit" ng-switch="product._new">
+
+						<!-- Create -->
+						<button ng-switch-when="true" class="btn btn-mini btn-success" ng-click="product.$save(); product._new = false;"><i class="icon-ok"></i></button>
+						<!-- Update -->
+						<button ng-switch-default class="btn btn-mini btn-success" ng-click="product.$update(); product._edit = false;"><i class="icon-ok"></i></button>
+						
+						<button class="btn btn-mini" ng-click="product._edit = false;">Cancel</button>
+					</div>
+					
+					
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<h1 data-ng-hide="!products.data || products.data.length">No products yet. <br> Why don't you <a href="/#!/products/create">Create One</a>?</h1>
+</section>
