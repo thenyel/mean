@@ -1,6 +1,19 @@
 
-<section class="well span12" ng-controller="ScopeDemoParentCtrl">
+<section class="well span12" ng-controller="ScopeDemoCtrl">
 	
+	<h3>ScopeDemoCtrl Controller</h3>
+	{{theField}}
+	<input type="text" data-ng-model="theField.text" />
+
+	<br>
+	<br>
+
+	<form name="myForm" class="row span8  well">
+		<h3>Inside Switch</h3>
+		<span data-ng-switch="true">
+		    <input data-ng-switch-when="true" type="text" data-ng-model="theField.text" />
+		</span>
+	</form>	
 	
 
 </section>

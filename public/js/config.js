@@ -36,6 +36,10 @@ window.app.config(['$routeProvider',
         when('/scopes', {
             templateUrl: 'views/demos/scopes.html'
         }).
+        // Mini Demos
+        when('/scratch', {
+            templateUrl: 'views/demos/scratch.html'
+        }).
 
 
 

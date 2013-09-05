@@ -1,16 +1,5 @@
-function ScopeDemoParentCtrl ($scope) {
+function ScopeDemoCtrl ($scope) {
 	
-}
+	$scope.theField = {text: 'hello'};
 
-function ScopeDemoChild1Ctrl ($scope) {
-	
-}
-
-function ScopeDemoChild2Ctrl ($scope) {
-	$scope.name = 'test';
-	
-}
-
-function ScopeDemoChild3Ctrl ($scope) {
-	
 }

@@ -1,25 +1,18 @@
 
-<section class="well span12" ng-controller="ScopeDemoParentCtrl">
+<section class="well span12" ng-controller="ScopeDemoCtrl">
+	
+	<h3>ScopeDemoCtrl Controller</h3>
+	<input type="text" data-ng-model="theField" />
 
-	<h2>Parent Controller</h2>
-
-	<section class="row">
-		<section class="span12">
-			<input type="text" ng-model="name" placeholder="name">
-			<br>
-			Name: {{name}}
-		</section>
-	</section>
+	<br>
 	<br>
 
-
-	<section class="row">
-		<div scope-demo parent-data></div>
-		<div scope-demo parent-data></div>
-		<div scope-demo parent-data></div>
-	</section>
-
+	<form name="myForm" class="row span8  well">
+		<h3>Inside Switch</h3>
+		<span data-ng-switch="true">
+		    <input data-ng-switch-when="true" type="text" data-ng-model="theField" />
+		</span>
+	</form>	
 	
-	<div calc="num"></div>
 
 </section>
